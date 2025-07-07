@@ -1,0 +1,57 @@
+# Worlds where the scoreboard will be disabled
+disabled-worlds:
+  - world_nether # Disabled in Nether
+  - world_the_end # Disabled in The End
+  # Additional worlds where you may want to disable the scoreboard can be added here
+
+# Sound effects configuration
+sounds:
+  # Sound played when a player levels up
+  level-up-sound: "ENTITY_PLAYER_LEVELUP"
+
+  # Sound played when a player picks up an item (used here for earning gold)
+  item-pickup-sound: "ENTITY_ITEM_PICKUP"
+
+  # Sound played when a player joins
+  join-sound: "ENTITY_PLAYER_LEVELUP"
+
+  # Sound played when a player earns gold
+  earn-gold-sound: "ENTITY_PLAYER_LEVELUP"
+
+  # Custom sound effects for friend actions
+  friend-request-sound: "ENTITY_PLAYER_LEVELUP"
+  friend-accept-sound: "ENTITY_PLAYER_LEVELUP"
+  friend-decline-sound: "ENTITY_PLAYER_LEVELUP"
+  game-start-sound: "BLOCK_NOTE_BLOCK_HARP"  # Example of a new sound for starting games
+
+# Customization for the scoreboard
+scoreboard:
+  # Title animation settings (can add more variations or customize timing)
+  title-animation:
+    - "&6&lHY&e&lPIXEL"
+    - "&e&lHY&6&lPIXEL"
+    - "&6&lHYP&e&lIXEL"
+    - "&e&lHYP&6&lIXEL"
+
+  # Sidebar format customization
+  sidebar-format:
+    # Line format for the date
+    date-line: "&7&l%date% &8L1ML"  # Example of a date line, replace with dynamic value
+
+    # Line format for rank display
+    rank-line: "&l&fRank: %rank%"  # Example of rank line
+
+    # Line format for gold display
+    gold-line: "&l&fGold: &e%gold%"  # Gold formatting
+
+    # Line format for level display
+    level-line: "&l&fLevel: &b%level%"  # Level formatting
+
+    # Line format for lobby number display
+    lobby-line: "&l&fLobby: &a%lobby%"  # Lobby display
+
+    # Line format for players online display
+    players-online-line: "&l&fPlayers Online: &a%players%"  # Number of players online
+
+    # Line format for website link
+    website-line: "&ewww.hypixel.net"  # Website link

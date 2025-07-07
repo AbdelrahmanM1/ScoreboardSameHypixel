@@ -1,0 +1,25 @@
+name: ScoreboardSameHypixel
+version: '1.9-APLHA'
+main: me.scoreboardSameHypixel.ScoreboardSameHypixel
+api-version: '1.13'
+authors: [ AbdelrahmanMoharram ]
+description: Nothing Here
+commands:
+  friend:
+    description: Manage your friends
+    usage: /friend <add|accept|decline|list> <player>
+    aliases:
+      - f
+  f:
+    description: Alias for the friend command
+    usage: /f <add|accept|decline|list> <player>
+    aliases:
+      - friend
+permissions:
+  scoreboard.samehypixel.admin:
+    description: Allows access to admin features
+    default: op
+  scoreboard.samehypixel.use:
+    description: Allows access to regular user features
+    default: true
+depend: [PlaceholderAPI]

@@ -1,0 +1,6 @@
+me\scoreboardSameHypixel\systems\FriendMainclass.class
+me\scoreboardSameHypixel\ScoreboardSameHypixel$1.class
+me\scoreboardSameHypixel\commands\FriendCommand.class
+me\scoreboardSameHypixel\listeners\PlayerJoinListener.class
+me\scoreboardSameHypixel\ScoreboardSameHypixel.class
+me\scoreboardSameHypixel\listeners\PlayerQuitListener.class

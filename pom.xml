@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me</groupId>
+    <artifactId>scoreboardsamehypixel</artifactId>
+    <version>2.0-APLHA</version>
+    <packaging>jar</packaging>
+
+    <name>scoreboardsamehypixel</name>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Shade Plugin to create the uber-jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Exclude overlapping resources -->
+                            <filters>
+                                <!-- Exclude snakeyaml resources -->
+                                <filter>
+                                    <artifact>*:snakeyaml*</artifact>
+                                    <includes>
+                                        <include>META-INF/maven/org.yaml/snakeyaml/pom.properties</include>
+                                        <include>META-INF/maven/org.yaml/snakeyaml/pom.xml</include>
+                                    </includes>
+                                </filter>
+
+                                <!-- Exclude README.md from lombok -->
+                                <filter>
+                                    <artifact>*:lombok*</artifact>
+                                    <includes>
+                                        <include>README.md</include>
+                                    </includes>
+                                </filter>
+
+                                <!-- Exclude acf-bukkit resources -->
+                                <filter>
+                                    <artifact>*:acf-bukkit*</artifact>
+                                    <includes>
+                                        <include>META-INF/maven/co.aikar/acf-bukkit/pom.properties</include>
+                                        <include>META-INF/maven/co.aikar/acf-bukkit/pom.xml</include>
+                                    </includes>
+                                </filter>
+
+                                <!-- Exclude overlapping LICENSE files -->
+                                <filter>
+                                    <artifact>*:authme*</artifact>
+                                    <includes>
+                                        <include>LICENSE</include>
+                                    </includes>
+                                </filter>
+                            </filters>
+
+                            <!-- Relocate conflicting classes -->
+                            <relocations>
+                                <!-- Relocate classes from Factions to avoid conflict -->
+                                <relocation>
+                                    <pattern>com.massivecraft.factions</pattern>
+                                    <shadedPattern>com.mycompany.shaded.factions</shadedPattern>
+                                </relocation>
+
+                                <!-- Relocate classes from snakeyaml (if needed) -->
+                                <relocation>
+                                    <pattern>org.yaml.snakeyaml</pattern>
+                                    <shadedPattern>com.mycompany.shaded.snakeyaml</shadedPattern>
+                                </relocation>
+                            </relocations>
+
+                            <!-- Merge all resources into one JAR -->
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <!-- Resources -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <!-- Repositories -->
+    <repositories>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>bungeecord-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>simonsators-repo</id>
+            <url>https://simonsator.de/repo/</url>
+        </repository>
+
+    </repositories>
+
+    <!-- Dependencies -->
+    <dependencies>
+        <!-- Paper API -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Foundation Library -->
+        <dependency>
+            <groupId>com.github.kangarko</groupId>
+            <artifactId>Foundation</artifactId>
+            <version>6.7.14</version>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.19-R0.1-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.19-R0.1-SNAPSHOT</version>
+            <type>javadoc</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.simonsator</groupId>
+            <artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
+            <version>1.6.2-RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.mrmicky</groupId>
+            <artifactId>fastboard</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+        <!-- Add other dependencies here -->
+    </dependencies>
+</project>
